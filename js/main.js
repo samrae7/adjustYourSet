@@ -1,18 +1,38 @@
 $(document).ready(function() {
 
-    var video = document.getElementsByTagName('video')[0];   
-    var track = video.addTextTrack('metadata');
-    var cuePoints;
+    function addCuePoints(cuePoints) {
+        var video = document.getElementsByTagName('video')[0];   
+        var track = video.addTextTrack('metadata');
+        $.when(getData("/data/cuepoints.json")).done(function(response){
+            console.log(response);
+            var cuePoints = response.cuepoints.cuepoint;
+            cuePoints.forEach(function(cuePoint, index){
+                var cue = makeCue(cuePoint);
+                track.addCue(cue);
+            });
+        });
+    }
 
-    function getCuePoints() {
-        $.ajax({
-          url: "/data/cuepoints.json",
+    function makeCue(cuePoint) {
+        cuePoint.timeStamp = timeToSeconds(cuePoint.timeStamp);
+        console.log(cuePoint.timeStamp);
+        var cue = new VTTCue(cuePoint.timeStamp, cuePoint.timeStamp, cuePoint.desc);
+        cue.onenter = function() {
+            console.log(this.text);
+        };
+        return cue;
+    }
+
+    function getData(url) {
+        return $.ajax({
+          url: url,
+          dataType: "json",
           success: function(response) {
-            cuePoints = response.cuepoints.cuepoint;
-            console.log(cuePoints);
-          },
+                    return response;
+            },
           error: function(xhr){
-                    console.log("An error occured: " + xhr.status + " " + xhr.statusText)}
+            console.log("An error occured: " + xhr.status + " " + xhr.statusText)
+            }
         });
     }
 
@@ -21,27 +41,8 @@ $(document).ready(function() {
       var seconds = (+a[0])*3600 + (+a[1])*60 + (+a[2]);
       return seconds;
     }
-
-
-    function addCuePoints(cuePoints) {
-        cuePoints.forEach(function(element, index){
-            console.log(timeToSeconds(element.timeStamp));
-            element.timeStamp = timeToSeconds(element.timeStamp);
-            var cue = new VTTCue(element.timeStamp, element.timeStamp, element.desc)
-            cue.onenter = function() {
-                console.log(this.text);
-            }
-            track.addCue(cue);
-        });
-    }
-
-    video.addEventListener('loadeddata', function() {
-        getCuePoints();
-
-        $(document).ajaxStop(function () {
-            addCuePoints(cuePoints)
-        });
-    }, false);
+    
+    addCuePoints();
 
 });
 
