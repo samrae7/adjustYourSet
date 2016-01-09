@@ -6,8 +6,8 @@ $(document).ready(function() {
         $.when(getData("/data/cuepoints.json"), getData("data/images.json")).done(function(response1, response2){
             var images = response2[0].images;
             var cuePoints = response1[0].cuepoints.cuepoint;
-            console.log('images',images);
-            console.log('cuePoints', cuePoints);
+            //console.log('images',images);
+            //console.log('cuePoints', cuePoints);
             cuePoints.forEach(function(cuePoint, index){
                 function matchImage(element){
                     return (element.id === cuePoint.image.toString());
@@ -26,10 +26,10 @@ $(document).ready(function() {
 
     function makeCue(cuePoint) {
         cuePoint.timeStamp = timeToSeconds(cuePoint.timeStamp);
-        console.log(cuePoint.timeStamp);
+        //console.log(cuePoint.timeStamp);
         var cue = new VTTCue(cuePoint.timeStamp, cuePoint.timeStamp + 2, cuePoint.desc);
         cue.onenter = function() {
-            console.log(this.text);
+            //console.log(this.text);
             renderProductInfo(cuePoint);
         };
         return cue;
@@ -56,7 +56,9 @@ $(document).ready(function() {
 
 
     function renderProductInfo(product) {
-        var productHTML = Mustache.render("{{desc}},{{price}},<img src='{{imageLink}}'>", product);
+        var productHTML = Mustache.render(
+            "<p><a href='{{link}}'>{{desc}}</a></p><p>{{price}}</p><img src='{{imageLink}}'>"
+            , product);
         $('#productBox').html(productHTML);
     }
 
