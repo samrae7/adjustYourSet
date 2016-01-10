@@ -6,16 +6,24 @@
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript" src="./js/mustache.js"></script>
   <script type="text/javascript" src="./js/main.js"></script>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-  <video controls poster="./videos/video.jpg">
-    <source src="./videos/video.ogv" type ="video/ogv">
-    <source src="./videos/video.mp4" type ="video/mp4">
-    <source src="./videos/video.webm" type ="video/webm">
-    Your browser does not support the <code>video</code> element.
-  </video>
-
-  <div id="productBox"></div>
+  <div class="player">
+    <video id="saville-row" controls poster="./assets/images/video.jpg">
+      <source src="./assets/videos/video.ogv" type ="video/ogv">
+      <source src="./assets/videos/video.mp4" type ="video/mp4">
+      <source src="./assets/videos/video.webm" type ="video/webm">
+      Your browser does not support the <code>video</code> element.
+    </video>
+    <div class="video-info">
+      <img class="saville-row-logo" src="./assets/images/saville_row_logo.jpeg" alt="">
+      <div id="productBox">
+        <!-- MUSTACHE TEMPLATE RENDERED HERE -->
+      </div>
+    </div>
+  </div>
+  
   
 </body>
 </html>

@@ -7,11 +7,11 @@ $(document).ready(function() {
             var images = response2[0].images;
             var cuePoints = response1[0].cuepoints.cuepoint;
             //console.log('images',images);
-            //console.log('cuePoints', cuePoints);
+            console.log('cuePoints', cuePoints);
             cuePoints.forEach(function(cuePoint, index){
                 function matchImage(element){
                     return (element.id === cuePoint.image.toString());
-                };
+                }
                 if (typeof(cuePoint.stock)!=="undefined" && Number(cuePoint.stock.replace(',','')) >= 100) {
                     var image = images.find(matchImage);
                     //console.log(image);
@@ -19,7 +19,7 @@ $(document).ready(function() {
                     //console.log(cuePoint.imageLink);
                     var cue = makeCue(cuePoint);
                     track.addCue(cue);
-                };
+                }
             });
         });
     }
@@ -43,7 +43,7 @@ $(document).ready(function() {
                     return response;
             },
           error: function(xhr){
-            console.log("An error occured: " + xhr.status + " " + xhr.statusText)
+            console.log("An error occured: " + xhr.status + " " + xhr.statusText);
             }
         });
     }
@@ -57,14 +57,13 @@ $(document).ready(function() {
 
     function renderProductInfo(product) {
         var productHTML = Mustache.render(
-            "<p><a href='{{link}}'>{{desc}}</a></p><p>{{price}}</p><img src='{{imageLink}}'>"
+            "<p class='product-name'><a href='{{link}}' target='_blank' >{{desc}}</a></p><p class='product-price'>{{price}}</p><img class='product-image' src='{{imageLink}}'>"
             , product);
         $('#productBox').html(productHTML);
     }
 
     addCuePoints();
-
-   
 });
+//changeagainagainagainagainagainagainagaindsdsbdfsbsdfdf
 
 

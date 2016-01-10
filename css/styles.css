@@ -1,0 +1,65 @@
+* {
+  padding:0;
+  margin:0;
+}
+
+body {
+  font-size:10px;
+}
+
+.player {
+  width:50%;
+  min-width:503px;
+  margin:0 auto;
+  background-color:#E8E8E8;
+}
+
+video#saville-row {
+  width:100%;
+}
+
+.saville-row-logo {
+  height:173px;
+  float:right;
+}
+
+.product-image {
+  width: 165px;
+  margin-top:8px;
+  border: 1px solid #BBB;
+}
+
+.video-info {
+  height:176px;
+}
+
+#productBox {
+  float:left;
+  width: 198px;
+  height: 173px;
+  padding: 0 1em;
+}
+
+p.product-name,p.product-price {
+  font: 400 1.4em/1.33em Helvetica,Arial,Sans-serif;
+  color: #333;
+  margin-top:0.8em;
+}
+
+p.product-price {
+  margin-top:0.4em;
+}
+
+a {
+  text-decoration:none;
+  color:#333;
+}
+
+a:visited {
+    color: #333;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
