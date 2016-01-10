@@ -6,15 +6,13 @@ $(document).ready(function() {
         $.when(getData("/data/cuepoints.json"), getData("data/images.json")).done(function(response1, response2){
             var images = response2[0].images;
             var cuePoints = response1[0].cuepoints.cuepoint;
-            //console.log('cuePoints', cuePoints);
-            cuePoints.forEach(function(cuePoint, index){
-              
-                function matchImage(element){
-                    return (element.id === cuePoint.image.toString());
-                }
-                if (typeof(cuePoint.stock)!=="undefined" && Number(cuePoint.stock.replace(',','')) >= 100) {
-                    var image = images.find(matchImage);
-                    cuePoint.imageLink = image.image;
+            cuePoints.forEach(function(cuePoint){
+                var image = images.find(matchImage, cuePoint);
+                cuePoint.imageLink = image.image;
+                cuePoint.stock = typeof(cuePoint.stock) !== "undefined" ?Number(cuePoint.stock.replace(',','')) : 0;
+
+                cuePoint.timeStamp = timeToSeconds(cuePoint.timeStamp);
+                if (cuePoint.stock >= 100) {
                     var cue = makeCue(cuePoint);
                     track.addCue(cue);
                 }
@@ -22,8 +20,11 @@ $(document).ready(function() {
         });
     }
 
+    function matchImage(element){
+      return (element.id === this.image.toString());
+    }
+
     function makeCue(cuePoint) {
-        cuePoint.timeStamp = timeToSeconds(cuePoint.timeStamp);
         var cue = new VTTCue(cuePoint.timeStamp, cuePoint.timeStamp + 2, cuePoint.desc);
         cue.onenter = function() {
             renderProductInfo(cuePoint);
