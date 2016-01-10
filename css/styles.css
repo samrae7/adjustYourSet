@@ -19,8 +19,9 @@ video#saville-row {
 }
 
 .saville-row-logo {
-  height:173px;
+  height:152px;
   float:right;
+  margin-top:13px;
 }
 
 .product-image {
@@ -37,16 +38,16 @@ video#saville-row {
   float:left;
   width: 198px;
   height: 173px;
-  padding: 0 1em;
+  padding: 0 1.2em;
 }
 
-p.product-name,p.product-price {
+h3.product-name,h3.product-price {
   font: 400 1.4em/1.33em Helvetica,Arial,Sans-serif;
   color: #333;
-  margin-top:0.8em;
+  margin-top:0.7em;
 }
 
-p.product-price {
+h3.product-price {
   margin-top:0.4em;
 }
 

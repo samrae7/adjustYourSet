@@ -57,7 +57,7 @@ $(document).ready(function() {
 
     function renderProductInfo(product) {
         var productHTML = Mustache.render(
-            "<p class='product-name'><a href='{{link}}' target='_blank' >{{desc}}</a></p><p class='product-price'>{{price}}</p><img class='product-image' src='{{imageLink}}'>"
+            "<h3 class='product-name'><a href='{{link}}' target='_blank'>{{desc}}</a></h3><h3 class='product-price'>{{price}}</h3><img class='product-image' src='{{imageLink}}'>"
             , product);
         $('#productBox').html(productHTML);
     }
