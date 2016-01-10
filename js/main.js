@@ -6,17 +6,15 @@ $(document).ready(function() {
         $.when(getData("/data/cuepoints.json"), getData("data/images.json")).done(function(response1, response2){
             var images = response2[0].images;
             var cuePoints = response1[0].cuepoints.cuepoint;
-            //console.log('images',images);
-            console.log('cuePoints', cuePoints);
+            //console.log('cuePoints', cuePoints);
             cuePoints.forEach(function(cuePoint, index){
+              
                 function matchImage(element){
                     return (element.id === cuePoint.image.toString());
                 }
                 if (typeof(cuePoint.stock)!=="undefined" && Number(cuePoint.stock.replace(',','')) >= 100) {
                     var image = images.find(matchImage);
-                    //console.log(image);
                     cuePoint.imageLink = image.image;
-                    //console.log(cuePoint.imageLink);
                     var cue = makeCue(cuePoint);
                     track.addCue(cue);
                 }
@@ -26,10 +24,8 @@ $(document).ready(function() {
 
     function makeCue(cuePoint) {
         cuePoint.timeStamp = timeToSeconds(cuePoint.timeStamp);
-        //console.log(cuePoint.timeStamp);
         var cue = new VTTCue(cuePoint.timeStamp, cuePoint.timeStamp + 2, cuePoint.desc);
         cue.onenter = function() {
-            //console.log(this.text);
             renderProductInfo(cuePoint);
         };
         return cue;
@@ -54,7 +50,6 @@ $(document).ready(function() {
       return seconds;
     }
 
-
     function renderProductInfo(product) {
         var productHTML = Mustache.render(
             "<h3 class='product-name'><a href='{{link}}' target='_blank'>{{desc}}</a></h3><h3 class='product-price'>{{price}}</h3><img class='product-image' src='{{imageLink}}'>"
@@ -64,6 +59,6 @@ $(document).ready(function() {
 
     addCuePoints();
 });
-//changeagainagainagainagainagainagainagaindsdsbdfsbsdfdf
+
 
 
