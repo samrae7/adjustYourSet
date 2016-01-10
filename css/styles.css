@@ -9,9 +9,10 @@ body {
 
 .player {
   width:50%;
-  min-width:503px;
+  min-width:511px;
   margin:0 auto;
   background-color:#E8E8E8;
+  border: 1px solid #CCC;
 }
 
 video#saville-row {
