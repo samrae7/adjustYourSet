@@ -1,0 +1,20 @@
+{
+  "name": "msplayer",
+  "version": "1.0.0",
+  "description": "This test is designed to assess your JavaScript skills and your approach to a design problem.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "mustache": "^2.2.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-webserver": "^0.9.1",
+    "jshint": "^2.8.0",
+    "gulp-jshint": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
