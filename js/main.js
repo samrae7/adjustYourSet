@@ -7,17 +7,18 @@ $(document).ready(function() {
         $.when(getData(urlCues), getData(urlImages)).done(function(response1, response2){
             var images = response2[0].images;
             var cuePoints = response1[0].cuepoints.cuepoint;
+            //console.log(cuePoints);
             cuePoints.forEach(function(cuePoint){
                 var image = images.find(matchImage, cuePoint);
                 cuePoint.imageLink = image.image;
                 cuePoint.stock = typeof(cuePoint.stock) !== "undefined" ?Number(cuePoint.stock.replace(',','')) : 0;
-
                 cuePoint.timeStamp = timeToSeconds(cuePoint.timeStamp);
                 if (cuePoint.stock >= 100) {
                     var cue = makeCue(cuePoint);
                     track.addCue(cue);
                 }
             });
+            console.log(track)
         });
       return this;
     };
@@ -29,8 +30,10 @@ $(document).ready(function() {
     function makeCue(cuePoint) {
         var cue = new VTTCue(cuePoint.timeStamp, cuePoint.timeStamp + 2, cuePoint.desc);
         cue.onenter = function() {
-            renderProductInfo(cuePoint);
+          console.log('entered');
+          renderProductInfo(cuePoint);
         };
+        console.log(cue);
         return cue;
     }
 
@@ -57,6 +60,7 @@ $(document).ready(function() {
         var productHTML = Mustache.render(
             "<h3 class='product-name'><a href='{{link}}' target='_blank'>{{desc}}</a></h3><h3 class='product-price'>{{price}}</h3><img class='product-image' src='{{imageLink}}'>"
             , product);
+        console.log(productHTML)
         $('#productBox').html(productHTML);
     }
   }();
