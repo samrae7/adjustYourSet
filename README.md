@@ -9,6 +9,8 @@ A code test to add cue points to a video. When cues are hit the page displays da
 
 NB: This doesn't currently work in Firefox as Firefox doesn't support VTTCue.onenter(). Working on a different solution for that. Works fine in Chrome and Safari. Haven't tested it on IE yet.
 
+![alt tag](./assets/images/savile-row-screenshot.png)
+
 # Original instructions
 
 This test is designed to assess your JavaScript skills and your approach to a design problem.
