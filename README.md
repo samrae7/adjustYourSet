@@ -1,5 +1,16 @@
 # Adjust Your Set Developer Assessment
 
+A code test to add cue points to a video. When cues are hit the page displays data fetched from two json files.
+
+##To get started
+- Clone the repo
+- Install dependencies: ```npm install```
+- Run ```gulp``` to serve the files (serves on port 9000)
+
+NB: This doesn't currently work in Firefox as Firefox doesn't support VTTCue.onenter(). Working on a different solution for that. Works fine in Chrome and Safari. Haven't tested it on IE yet.
+
+# Original instructions
+
 This test is designed to assess your JavaScript skills and your approach to a design problem.
 
 Feel free to use libraries to help with your implementation. **Keep in mind we want to assess YOUR JavaScript skills**
