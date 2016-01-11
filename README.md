@@ -2,7 +2,7 @@
 
 A code test to add cue points to a video. When cues are hit the page displays data fetched from two json files.
 
-##To get started
+##To view this project:
 - Clone the repo
 - Install dependencies: ```npm install```
 - Run ```gulp``` to serve the files (serves on port 9000)
