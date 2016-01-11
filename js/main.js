@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
-    function addCuePoints(cuePoints) {
-        var video = document.getElementsByTagName('video')[0];   
-        var track = video.addTextTrack('metadata');
-        $.when(getData("/data/cuepoints.json"), getData("data/images.json")).done(function(response1, response2){
+  var cueAdder = cueAdder || function(){
+
+    $.fn.addCuePoints = function(urlCues, urlImages) {   
+        var track = this[0].addTextTrack('metadata');
+        $.when(getData(urlCues), getData(urlImages)).done(function(response1, response2){
             var images = response2[0].images;
             var cuePoints = response1[0].cuepoints.cuepoint;
             cuePoints.forEach(function(cuePoint){
@@ -18,7 +19,8 @@ $(document).ready(function() {
                 }
             });
         });
-    }
+      return this;
+    };
 
     function matchImage(element){
       return (element.id === this.image.toString());
@@ -57,8 +59,11 @@ $(document).ready(function() {
             , product);
         $('#productBox').html(productHTML);
     }
+  }();
 
-    addCuePoints();
+  //If you had multiple videos with data in the same format, you could use addCuePoints(urlCues, urlImages) as follows:
+
+  $('#savile-row').addCuePoints("/data/cuepoints.json", "data/images.json");
 });
 
 
