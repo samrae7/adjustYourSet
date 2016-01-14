@@ -3,8 +3,9 @@ $(document).ready(function() {
   var cueAdder = cueAdder || function(){
 
     $.fn.addCuePoints = function(urlCues, urlImages) { 
-    var self = this;  
+    
       var track = this[0].addTextTrack('metadata');
+
       $.when(getData(urlCues), getData(urlImages)).done(function(response1, response2){
           var images = response2[0].images;
           var cuePoints = response1[0].cuepoints.cuepoint;
@@ -54,9 +55,8 @@ $(document).ready(function() {
     }
 
     function renderProductInfo(product) {
-        var productHTML = Mustache.render(
-            "<h3 class='product-name'><a href='{{link}}' target='_blank'>{{desc}}</a></h3><h3 class='product-price'>{{price}}</h3><a href='{{link}}' target='_blank'><img class='product-image' src='{{imageLink}}' alt='{{desc}}'></a>"
-            , product);
+      var productTemplate = $('#productTemplate').html();
+        var productHTML = Mustache.render(productTemplate, product);
         $('#productBox').html(productHTML);
     }
   }();

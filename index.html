@@ -19,7 +19,15 @@
     </video>
     <div class="video-info">
       <div id="productBox">
-        <!-- MUSTACHE TEMPLATE RENDERED HERE -->
+        <script id="productTemplate" type="text/template">
+          <h3 class='product-name'>
+            <a href='{{link}}' target='_blank'>{{desc}}</a>
+          </h3>
+          <h3 class='product-price'>{{price}}</h3>
+          <a href='{{link}}' target='_blank'>
+            <img class='product-image' src='{{imageLink}}' alt='{{desc}}'>
+          </a>
+        </script>
       </div>
       <img class="savile-row-logo" src="./assets/images/savile_row_logo.jpeg" alt="">
     </div>
